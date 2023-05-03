@@ -14,7 +14,7 @@ st.write('Nesta aplicação, você poderá analisar a rentabilidade de uma açã
 ativo = st.text_input('Digite o código do ativo (exemplo: PETR4.SA)')
 percentual = st.text_input(
     'Digite o desconto necessário para comprar a ação (exemplo: 0.015)')
-percentual = float(percentual)
+
 
 if st.button('Analisar'):
     # Baixar dados do ativo selecionado
@@ -41,7 +41,7 @@ if st.button('Analisar'):
 
     df_ativo['fechAnt'] = df_ativo['Adj Close'].shift(1)
     df_ativo['entrada'] = df_ativo['fechAnt'] - \
-        (df_ativo['fechAnt'] * percentual)
+        (df_ativo['fechAnt'] * float(percentual))
 
     df_ativo['tem_entrada'] = np.where(
         df_ativo['Adj Low'] < df_ativo['entrada'], 1, 0)
